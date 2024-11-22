@@ -1,6 +1,19 @@
 <<<<<<< HEAD
 # AngularEcommerce
 
+# Release 1.0: 
+## Feature: Show a list of products. 
+## Steps: 
+1. Created Angular Project.
+2. Created Angular component for product-list
+3. Developed TypeScript class for Product
+4. Created Angular service to call REST-APIs.
+5. Update Angular component to subscribe to data from Angular service.
+6. Display the data in an HTML page.
+7. Add Cross Origin Support to the Spring boot app. 
+
+
+
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
 
 ## Development server
