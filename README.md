@@ -1,4 +1,4 @@
-# AngularEcommerce
+# angular-ecommerce-frontend
 
 # Release 1.0: 
 ## Feature: Show a list of products. 
