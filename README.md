@@ -1,4 +1,3 @@
-<<<<<<< HEAD
 # AngularEcommerce
 
 # Release 1.0: 
