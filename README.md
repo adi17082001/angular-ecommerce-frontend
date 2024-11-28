@@ -11,6 +11,16 @@
 6. Display the data in an HTML page.
 7. Add Cross Origin Support to the Spring boot app. 
 
+# Release 2.0: 
+## Features:
+1. Online Shop Template Integration.
+2. Search for products by category
+3. Search for products by text box
+4. Master / detail view of products
+5. Pagination support for products
+6. Add products to shopping cart (CRUD)
+7. Shopping cart checkout
+
 
 
 
