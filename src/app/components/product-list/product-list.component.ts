@@ -8,7 +8,7 @@ import { ProductService } from '../../services/product.service';
   templateUrl: './product-list-grid.component.html',
   styleUrls: ['./product-list.component.css']
 })
-export class ProductListComponent {
+export class ProductListComponent implements OnInit{
   
   products: Product[] = [];
   currentCategoryId: number = 1;
