@@ -25,6 +25,16 @@ export class ProductService {
     return this.httpClient.get<Product>(productUrl);
   }
 
+  // new method to provie pagination support
+  getProductListPaginate(thePage: number, 
+                          thePageSize: number, 
+                          theCategoryId: number): Observable<GetResponseProducts>{
+    // need to build URL based on category id and pagination parameters
+    const searchUrl = `${this.baseUrl}/search/findByCategoryId?id=${theCategoryId}`
+                    + `&page=${thePage}&size=${thePageSize}`;
+    return this.httpClient.get<GetResponseProducts>(searchUrl);
+  }
+
 
   getProductList(theCategoryId: number): Observable<Product[]>{
 
@@ -58,6 +68,12 @@ export class ProductService {
 interface GetResponseProducts{
   _embedded:{
     products: Product[];
+  },
+  page:{           // added the the response meta data for pagination support
+    size: number,
+    totalElements: number,
+    totalPages: number,
+    number: number
   }
 }
 

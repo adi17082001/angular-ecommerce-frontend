@@ -12,6 +12,8 @@ import { ProductCategoryMenuComponent } from './components/product-category-menu
 import { SearchComponent } from './components/search/search.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
+import { NgbModule } from '@ng-bootstrap/ng-bootstrap';   // imported ng bootstrap module to provie paginationi support
+
 const routes: Routes = [
   {path: 'products/:id', component: ProductDetailsComponent}, // added for Master-Detail view of products
   {path: 'search/:keyword', component: ProductListComponent}, // added route for search products by keyword
@@ -35,6 +37,7 @@ const routes: Routes = [
     RouterModule.forRoot(routes),
     BrowserModule,
     AppRoutingModule,
+    NgbModule,  // imported to provide pagination support
     HttpClientModule
   ],
   providers: [ProductService],
