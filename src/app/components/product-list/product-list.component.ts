@@ -1,5 +1,5 @@
 import { Component,OnInit } from '@angular/core';
-import { ActivatedRoute } from '@angular/router';
+import { ActivatedRoute, TitleStrategy } from '@angular/router';
 import { Product } from '../../common/product';
 import { ProductService } from '../../services/product.service';
 
@@ -17,7 +17,7 @@ export class ProductListComponent implements OnInit{
 
   // new properties for pagination
   thePageNumber: number = 1;
-  thePageSize: number = 50;
+  thePageSize: number = 5;    // we set it to 5 as in our html template, we have default page size as 5
   theTotalElements: number = 0;
 
 
@@ -98,5 +98,13 @@ export class ProductListComponent implements OnInit{
                                                     this.theTotalElements = data.page.totalElements;
                                                   }
                                                 );
+  }
+
+  // new method to update page size based on user input
+  updatePageSize(pageSize: string){
+    this.thePageSize = +pageSize; // convert string to number using "+" operator
+    this.thePageNumber = 1;
+    this.listProducts();
+
   }
 }
