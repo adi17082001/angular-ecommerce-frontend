@@ -14,7 +14,8 @@
                         </a>
                         
                         <!-- add a link on the product name  -->
-                        <a routerLink="/products/{{ tempProduct.name }}">
+                        <!-- fixed bug: unable to view the product details after clicking on product name : changed the "/products/{{ tempProduct.name }}" to "/products/{{ tempProduct.id }}"-->
+                        <a routerLink="/products/{{ tempProduct.id }}">
                             <h1>{{ tempProduct.name }}</h1>
                         </a>
                         
