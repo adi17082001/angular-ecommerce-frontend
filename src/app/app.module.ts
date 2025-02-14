@@ -13,9 +13,11 @@ import { SearchComponent } from './components/search/search.component';
 import { ProductDetailsComponent } from './components/product-details/product-details.component';
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
-import { CartStatusComponent } from './components/cart-status/cart-status.component';   // imported ng bootstrap module to provie paginationi support
+import { CartStatusComponent } from './components/cart-status/cart-status.component';
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';   // imported ng bootstrap module to provie paginationi support
 
 const routes: Routes = [
+  {path: 'cart-details', component: CartDetailsComponent}, // added for shopping cart details
   {path: 'products/:id', component: ProductDetailsComponent}, // added for Master-Detail view of products
   {path: 'search/:keyword', component: ProductListComponent}, // added route for search products by keyword
   {path: 'category/:id', component: ProductListComponent},
@@ -33,7 +35,8 @@ const routes: Routes = [
     ProductCategoryMenuComponent,
     SearchComponent,
     ProductDetailsComponent,
-    CartStatusComponent
+    CartStatusComponent,
+    CartDetailsComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
