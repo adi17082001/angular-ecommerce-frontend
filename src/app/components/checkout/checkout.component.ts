@@ -1,6 +1,5 @@
 import { Component, OnInit } from '@angular/core';
 import { FormBuilder, FormGroup } from '@angular/forms';
-import { TitleStrategy } from '@angular/router';
 
 @Component({
   selector: 'app-checkout',
@@ -11,6 +10,9 @@ export class CheckoutComponent implements OnInit {
 
   checkoutFormGroup!: FormGroup;
 
+  totalPrice: number = 0;
+  totalQuantity: number = 0;
+
   constructor(private formBuilder: FormBuilder){}
 
   ngOnInit(): void {
@@ -20,8 +22,41 @@ export class CheckoutComponent implements OnInit {
         firstName: [''],
         lastName: [''],
         email: ['']
+      }),
+      shippingAddress: this.formBuilder.group({
+        street: [''],
+        city: [''],
+        state:[''],
+        country: [''],
+        zipCode: ['']
+      }),
+      billingAddress: this.formBuilder.group({
+        street: [''],
+        city: [''],
+        state:[''],
+        country: [''],
+        zipCode: ['']
+      }),
+      creditCard: this.formBuilder.group({
+        cardType: [''],
+        nameOnCard: [''],
+        cardNumber: [''],
+        securityCode: [''],
+        expirationMonth: [''],
+        expirationYear: ['']
       })
     });
+  }
+
+  // method to copy shipping address to billing address
+  copyShippingAddressToBillingAddress(event: any){
+    if(event.target.checked){
+      this.checkoutFormGroup.controls['billingAddress'].setValue(this.checkoutFormGroup.controls['shippingAddress'].value)
+    }
+    else{
+      this.checkoutFormGroup.controls['billingAddress'].reset();
+    }
+
   }
 
   // submit button
