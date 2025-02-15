@@ -14,9 +14,12 @@ import { ProductDetailsComponent } from './components/product-details/product-de
 
 import { NgbModule } from '@ng-bootstrap/ng-bootstrap';
 import { CartStatusComponent } from './components/cart-status/cart-status.component';
-import { CartDetailsComponent } from './components/cart-details/cart-details.component';   // imported ng bootstrap module to provie paginationi support
+import { CartDetailsComponent } from './components/cart-details/cart-details.component';
+import { CheckoutComponent } from './components/checkout/checkout.component';   // imported ng bootstrap module to provie paginationi support
+import { ReactiveFormsModule } from '@angular/forms';
 
 const routes: Routes = [
+  {path: 'checkout', component: CheckoutComponent},  // added for checkout component
   {path: 'cart-details', component: CartDetailsComponent}, // added for shopping cart details
   {path: 'products/:id', component: ProductDetailsComponent}, // added for Master-Detail view of products
   {path: 'search/:keyword', component: ProductListComponent}, // added route for search products by keyword
@@ -36,14 +39,16 @@ const routes: Routes = [
     SearchComponent,
     ProductDetailsComponent,
     CartStatusComponent,
-    CartDetailsComponent
+    CartDetailsComponent,
+    CheckoutComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
     BrowserModule,
     AppRoutingModule,
     NgbModule,  // imported to provide pagination support
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule // added for checkout form
   ],
   providers: [ProductService],
   bootstrap: [AppComponent]
