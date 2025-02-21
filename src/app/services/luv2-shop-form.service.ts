@@ -1,12 +1,36 @@
+import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable, of } from 'rxjs';
+import { map, Observable, of } from 'rxjs';
+import { Country } from '../common/country';
+import { State } from '../common/state';
 
 @Injectable({
   providedIn: 'root'
 })
 export class Luv2ShopFormService {
 
-  constructor() { }
+  private countriesUrl = 'http://localhost:8080/api/countries';
+  private statesUrl = 'http://localhost:8080/api/states';
+
+  constructor(private httpClient: HttpClient) { }
+
+  // method to get countries
+  getCountries(): Observable<Country[]>{
+    return this.httpClient.get<GetResponseCountries>(this.countriesUrl).pipe(
+      map(response => response._embedded.countries)
+    );
+  }
+
+  // method to get states
+  getStates(theCountryCode: string): Observable<State[]>{
+
+    // search url
+    const searchStatesUrl = `${this.statesUrl}/search/findByCountryCode?code=${theCountryCode}`;
+
+    return this.httpClient.get<GetResponseStates>(searchStatesUrl).pipe(
+      map(response => response._embedded.states)
+    );
+  }
 
   // method for credit card months
   getCreditCardMonths(startMonth: number): Observable<number[]>{
@@ -39,5 +63,20 @@ export class Luv2ShopFormService {
     }
 
     return of(data);
+  }
+}
+
+
+// used for unwrap the JSON from Spring Data REST _embedded entry for counties
+interface GetResponseCountries{
+  _embedded:{
+    countries: Country[];
+  }
+}
+
+// used for unwrap the JSON from Spring Data REST _embedded entry for states
+interface GetResponseStates{
+  _embedded:{
+    states: State[];
   }
 }
