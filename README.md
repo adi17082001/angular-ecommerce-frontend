@@ -21,8 +21,11 @@
 6. Add products to shopping cart (CRUD)
 7. Shopping cart checkout
 
-
-
+# Release 3.0: 
+## Features:
+1. User login/logout security
+2. Provide access to special VIP page only for authenticated customers
+3. Keep track of order history for registered customers
 
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 18.2.12.
