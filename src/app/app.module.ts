@@ -1,5 +1,5 @@
 import { HttpClientModule } from '@angular/common/http';
-import { NgModule } from '@angular/core';
+import { Injector, NgModule } from '@angular/core';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -21,6 +21,7 @@ import { LoginComponent } from './components/login/login.component';
 import { LoginStatusComponent } from './components/login-status/login-status.component';
 
 import{
+  OktaAuthGuard,
   OktaAuthModule,
   OktaCallbackComponent,
   OKTA_CONFIG
@@ -29,13 +30,23 @@ import{
 import { OktaAuth } from '@okta/okta-auth-js';
 
 import myAppConfig from './config/my-app-config';
+import { MembersPageComponent } from './components/members-page/members-page.component';
 
 const oktaConfig = myAppConfig.oidc;
 
 const oktaAuth = new OktaAuth(oktaConfig);  // create an okta auth instance and pass oktaconfig as parameter
 
+function sendToLoginPage(oktaAuth: OktaAuth, injector: Injector){
+  // Use injector to access any service available within your application
+  const router = injector.get(Router);
+
+  // Redirect the user to your custom login page
+  router.navigate(['/login']);
+}
 
 const routes: Routes = [
+  {path: 'members', component: MembersPageComponent, canActivate: [OktaAuthGuard],
+                    data: {onAuthRequired: sendToLoginPage} }, // route for special VIP page "members page"
 
   {path: 'login/callback', component: OktaCallbackComponent},
   {path: 'login', component: LoginComponent}, 
@@ -63,7 +74,8 @@ const routes: Routes = [
     CartDetailsComponent,
     CheckoutComponent,
     LoginComponent,
-    LoginStatusComponent
+    LoginStatusComponent,
+    MembersPageComponent
   ],
   imports: [
     RouterModule.forRoot(routes),
